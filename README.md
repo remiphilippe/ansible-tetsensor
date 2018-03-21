@@ -15,4 +15,4 @@ Proxy is only required if you dependencies need access to a public repository an
 `sensor_file` is the location of the sensor file to deploy on the VM.
 
 ## Usage
-`ansible-playbook tetration.yml -u ansible --private-key=ssh/ansible-ssh -i inventory_location`
+`ansible-playbook tetsensor.yml -u ansible --private-key=ssh/ansible-ssh -i inventory_location`

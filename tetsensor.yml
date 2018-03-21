@@ -1,8 +1,8 @@
 ---
-- name: Install Tetration
+- name: Install Tetration Sensor
   hosts: all
   remote_user: ansible
   environment: '{{ proxy_env }}'
 
   roles:
-    - { role: tetration, tags: tetration }
+    - { role: tetsensor, tags: tetsensor }
