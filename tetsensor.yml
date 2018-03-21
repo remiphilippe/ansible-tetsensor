@@ -1,0 +1,8 @@
+---
+- name: Install Tetration
+  hosts: all
+  remote_user: ansible
+  environment: '{{ proxy_env }}'
+
+  roles:
+    - { role: tetration, tags: tetration }

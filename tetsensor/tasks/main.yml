@@ -1,0 +1,56 @@
+---
+- name: Install Packages
+  yum: name={{ item }} state=present
+  with_items:
+    - redhat-lsb-core
+    - dmidecode
+    - ipset
+  become: yes
+  become_method: sudo
+
+- name: Remove existing sensor
+  yum:
+    name: tet-sensor-site
+    state: absent
+  become: yes
+  become_method: sudo
+
+- name: Remove installation folder
+  file:
+    state: absent
+    path: /usr/local/tet
+  become: yes
+  become_method: sudo
+
+# - name: Set INPUT to ACCEPT
+#   iptables:
+#     chain: INPUT
+#     jump: ACCEPT
+#     flush: yes
+#   become: yes
+#   become_method: sudo
+#
+# - name: Set OUTPUT to ACCEPT
+#   iptables:
+#     chain: OUTPUT
+#     jump: ACCEPT
+#     flush: yes
+#   become: yes
+#   become_method: sudo
+
+- name: Copy RPM
+  copy: src={{ sensor_file }} dest=/tmp/tet-sensor.rpm
+
+- name: install rpm from a local file
+  yum:
+    name: /tmp/tet-sensor.rpm
+    state: present
+  become: yes
+  become_method: sudo
+
+- name: remove rpm file
+  file:
+    state: absent
+    path: /tmp/tet-sensor.rpm
+  become: yes
+  become_method: sudo

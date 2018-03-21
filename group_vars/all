@@ -1,0 +1,10 @@
+---
+
+http_proxy: http://myproxy.company.com:80
+no_proxy: "127.0.0.1,localhost"
+proxy_env:
+  http_proxy: "{{ http_proxy }}"
+  https_proxy: "{{ http_proxy }}"
+  no_proxy: "{{ no_proxy }}"
+
+sensor_file: /tmp/sensor.rpm
